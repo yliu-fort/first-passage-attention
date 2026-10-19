@@ -6,6 +6,8 @@ For query t and key s <= t, FPA adds to the logit q_t . k_s / sqrt(d) the first-
 
 of a field phi, levels psi and a strength beta > 0 per head. The forward pass uses the hard range minimum; the backward
 pass uses in its place the gradient of the soft minimum -tau * log sum_{s < u <= t} exp(-phi_u / tau).
+
+Paper: [arXiv:2610.22714](https://arxiv.org/abs/2610.22714)
 """
 import math
 
