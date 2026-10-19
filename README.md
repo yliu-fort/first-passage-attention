@@ -2,11 +2,13 @@
 
 Triton kernels (forward and backward) and a PyTorch reference for First Passage Attention (FPA), as used to train the 110M-parameter FPA language model.
 
+Paper: [arXiv:2610.22714](https://arxiv.org/abs/2610.22714)
+
 ## Definition
 
 For query $t$ and key $s\le t$ of a head:
 
-$$o_t=\sum_{s\le t}\operatorname{softmax}_s\Bigl(\frac{q_t^\top k_s}{\sqrt d}+b_{ts}\Bigr)v_s,\qquad b_{ts}=\beta\min\Bigl(0,\ \min_{s<u\le t}\phi_u-\psi_s\Bigr),\qquad b_{tt}=0.$$
+$$o_t=\sum_{s\le t}\mathrm{softmax}_s\Bigl(\frac{q_t^\top k_s}{\sqrt d}+b_{ts}\Bigr)v_s,\qquad b_{ts}=\beta\min\Bigl(0,\ \min_{s<u\le t}\phi_u-\psi_s\Bigr),\qquad b_{tt}=0.$$
 
 Backward: the gradient for $\phi$ uses the soft minimum $-\tau\log\sum_{s<u\le t}e^{-\phi_u/\tau}$ ($\tau=1$) in place of $\min_{s<u\le t}\phi_u$; the other gradients are exact.
 
